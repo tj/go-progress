@@ -68,3 +68,10 @@ func TestBarText(t *testing.T) {
 	b.ValueInt(250)
 	assert.Equal(t, ` 25% |███████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| Installing`, b.String())
 }
+
+func TestBarDelimiters(t *testing.T) {
+	b := NewInt(1000)
+	b.StartDelimiter = "["
+	b.EndDelimiter = "]"
+	assert.Equal(t, `  0% [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] `, b.String())
+}

@@ -10,11 +10,12 @@ import (
 
 // Bar is a progress bar.
 type Bar struct {
-	Delimiter string  // Delimiter for the bar ("|").
-	Filled    string  // Filled section representation ("█").
-	Empty     string  // Empty section representation ("░")
-	Total     float64 // Total value.
-	Width     int     // Width of the bar.
+	StartDelimiter string  // StartDelimiter for the bar ("|").
+	EndDelimiter   string  // EndDelimiter for the bar ("|").
+	Filled         string  // Filled section representation ("█").
+	Empty          string  // Empty section representation ("░")
+	Total          float64 // Total value.
+	Width          int     // Width of the bar.
 
 	value float64
 	text  string
@@ -23,11 +24,12 @@ type Bar struct {
 // New returns a new bar with the given total.
 func New(total float64) *Bar {
 	return &Bar{
-		Delimiter: "|",
-		Filled:    "█",
-		Empty:     "░",
-		Total:     total,
-		Width:     60,
+		StartDelimiter: "|",
+		EndDelimiter:   "|",
+		Filled:         "█",
+		Empty:          "░",
+		Total:          total,
+		Width:          60,
 	}
 }
 
@@ -61,10 +63,10 @@ func (b *Bar) String() string {
 	empty := math.Floor(float64(b.Width) - filled)
 
 	s := fmt.Sprintf("%3.0f%% ", p*100)
-	s += b.Delimiter
+	s += b.StartDelimiter
 	s += strings.Repeat(b.Filled, int(filled))
 	s += strings.Repeat(b.Empty, int(empty))
-	s += b.Delimiter
+	s += b.EndDelimiter
 	s += " " + b.text
 
 	return s
