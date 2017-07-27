@@ -10,11 +10,11 @@ import (
 
 // Bar is a progress bar.
 type Bar struct {
-	Delimiter string
-	Filled    string
-	Empty     string
-	Total     float64
-	Width     int
+	Delimiter string  // Delimiter for the bar ("|").
+	Filled    string  // Filled section representation ("█").
+	Empty     string  // Empty section representation ("░")
+	Total     float64 // Total value.
+	Width     int     // Width of the bar.
 
 	value float64
 	text  string
