@@ -26,7 +26,7 @@ func main() {
 	defer ansi.ShowCursor()
 
 	b := progress.NewInt(10)
-	b.Width = 25
+	b.Width = 40
 	b.StartDelimiter = gray("|")
 	b.EndDelimiter = gray("|")
 	b.Filled = purple("█")
