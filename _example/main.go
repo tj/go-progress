@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/tj/go-progress"
-	"github.com/tj/go/ansi"
+	"github.com/tj/go/term"
 
 	color "github.com/aybabtme/rgbterm"
 )
@@ -22,8 +22,8 @@ func purple(s string) string {
 }
 
 func main() {
-	ansi.HideCursor()
-	defer ansi.ShowCursor()
+	term.HideCursor()
+	defer term.ShowCursor()
 
 	b := progress.NewInt(10)
 	b.Width = 40
@@ -35,6 +35,6 @@ func main() {
 	for i := 0; i <= 10; i++ {
 		b.ValueInt(i)
 		time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
-		os.Stdout.WriteString(ansi.CenterLine(b.String()))
+		os.Stdout.WriteString(term.CenterLine(b.String()))
 	}
 }
