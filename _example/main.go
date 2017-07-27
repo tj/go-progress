@@ -22,6 +22,9 @@ func purple(s string) string {
 }
 
 func main() {
+	ansi.HideCursor()
+	defer ansi.ShowCursor()
+
 	b := progress.NewInt(10)
 	b.Width = 25
 	b.StartDelimiter = gray("|")
