@@ -69,6 +69,22 @@ func TestBarText(t *testing.T) {
 	assert.Equal(t, ` 25% |███████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| Installing`, b.String())
 }
 
+func TestBarTemplate(t *testing.T) {
+	b := NewInt(1000)
+	b.Template(`{{.Bar}} {{.Percent}}%`)
+
+	assert.Equal(t, `|░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0%`, b.String())
+
+	b.ValueInt(250)
+	assert.Equal(t, `|███████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 25%`, b.String())
+
+	b.ValueInt(750)
+	assert.Equal(t, `|█████████████████████████████████████████████░░░░░░░░░░░░░░░| 75%`, b.String())
+
+	b.ValueInt(1000)
+	assert.Equal(t, `|████████████████████████████████████████████████████████████| 100%`, b.String())
+}
+
 func TestBarDelimiters(t *testing.T) {
 	b := NewInt(1000)
 	b.StartDelimiter = "["
