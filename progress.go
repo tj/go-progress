@@ -108,7 +108,7 @@ func (b *Bar) String() string {
 	return buf.String()
 }
 
-// WriteTo the given writer.
+// WriteTo writes the progress bar to w.
 func (b *Bar) WriteTo(w io.Writer) (int64, error) {
 	s := fmt.Sprintf("\r   %s ", b.String())
 	_, err := io.WriteString(w, s)
