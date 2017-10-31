@@ -2,7 +2,6 @@ package main
 
 import (
 	"math/rand"
-	"os"
 	"time"
 
 	"github.com/tj/go-progress"
@@ -32,9 +31,13 @@ func main() {
 	b.Filled = purple("█")
 	b.Empty = gray("░")
 
+	render := term.Renderer()
+
 	for i := 0; i <= 10; i++ {
 		b.ValueInt(i)
 		time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
-		os.Stdout.WriteString(term.CenterLine(b.String()))
+		render(term.CenterLine(b.String()))
 	}
+
+	term.ClearAll()
 }
